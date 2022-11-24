@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+
+    <style>
+      body {
+        box-sizing: border-box;
+        background-color: #f1f5f9;
+        color: #0f172a;
+        font-family: "Roboto", "Ubuntu", sans-serif;
+        font-size: 16px;
+        width: 80vw;
+        margin: 0 10vw;
+      }
+
+      h1 {
+        text-align: center;
+      }
+
+      input {
+        margin: 8px 0;
+        height: 2em;
+        font-family: "Roboto", "Ubuntu", sans-serif;
+        font-size: 16px;
+        flex-grow: 0;
+        width: fit-content;
+      }
+
+      form {
+        margin-bottom: 16px;
+        padding: 16px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border: 4px solid #334155;
+        border-radius: 4px;
+      }
+
+      .numInputBox {
+        width: 8em;
+      }
+
+      .multInputBoxes {
+        display: flex;
+        justify-content: space-around;
+        gap: 4px;
+      }
+
+      label {
+        align-self: flex-start;
+        border-right: 4px solid #334155;
+        border-bottom: 4px solid #334155;
+        background-color: #334155;
+        color: white;
+        margin-top: -16px;
+        margin-left: -16px;
+        padding: 8px;
+        font-weight: 700;
+        margin-bottom: 16px;
+      }
+
+      .inputButton {
+        background-color: #15803d;
+        color: white;
+        border-radius: 4px;
+        border:none;
+        padding: 8px;
+      }
+
+    </style>
+  </head>
+  <body>
+    <h1>Odin Project: Javascript Fundamentals Part 3 Assignments</h1>
+
+    <form>
+      <label for="add">Add Seven to a Number<br /></label>
+      <input type="number" class="numInputBox" id="addToNum" name="add" /><br />
+      <input type="button" class="inputButton" value="Add" id="addButton" />
+    </form>
+    <br />
+
+    <form class="multiplyForm">
+      <label for="multiply">Multiply Two Numbers<br /></label>
+      <div class="multInputBoxes">
+        <input type="number" class="numInputBox" id="mult1" name="multiply" />
+        <input type="number" class="numInputBox" id="mult2" />
+      </div>
+      <input
+        type="number"
+        class="numInputBox"
+        id="multResult"
+        readonly
+        placeholder="Result" />
+      <div class="multButtons">
+        <input
+          type="button"
+          class="inputButton"
+          value="Multiply"
+          id="multButton" />
+        <input
+          type="button"
+          class="inputButton"
+          value="Clear"
+          id="multClear" /><br />
+      </div>
+    </form>
+    <br />
+
+    <form>
+      <label for="capital">Capitalize a Word/Phrase<br /></label>
+      <input type="text" id="capInput" name="capital" /><br />
+      <input
+        type="button"
+        class="inputButton"
+        value="Capitalize"
+        id="capButton" />
+    </form>
+    <br />
+
+    <form>
+      <label for="lastLetter"
+        >Display the Last Letter of a Word/Phrase<br
+      /></label>
+      <input type="text" id="lastLetInput" name="lastLetter" /><br />
+      <input
+        type="button"
+        class="inputButton"
+        value="Show last letter"
+        id="lastLetButton" />
+    </form>
+    <br />
+
+    <script>
+      // adds 7 to a number if one is entered
+      function add7(n) {
+        if (n === "") return n;
+        return +n + 7;
+      }
+
+      // multiplies two numbers
+      function multiply(a, b) {
+        return a * b;
+      }
+
+      // returns string in sentence case
+      function capitalize(inputString) {
+        let firstLetter = inputString[0];
+        let remainingLetters = inputString.substring(1);
+        return firstLetter.toUpperCase() + remainingLetters.toLowerCase();
+      }
+
+      // returns last letter of string
+      function lastLetter(inputString) {
+        return inputString[inputString.length - 1];
+      }
+
+      // clears value of form fields
+      function clearValue(element) {
+        element.value = "";
+      }
+
+      /* Add Module */
+      let addButton = document.getElementById("addButton");
+      addButton.addEventListener("click", () => {
+        let addValue = document.querySelector("#addToNum");
+        addValue.value = add7(addValue.value);
+      });
+
+      /* Multiply Module */
+      let multButton = document.getElementById("multButton");
+      multButton.addEventListener("click", () => {
+        let mult1 = document.querySelector("#mult1");
+        let mult2 = document.querySelector("#mult2");
+        let multResult = document.querySelector("#multResult");
+        multResult.value = multiply(mult1.value, mult2.value);
+      });
+      let multClear = document.getElementById("multClear");
+      multClear.addEventListener("click", () => {
+        let mult1 = document.querySelector("#mult1");
+        clearValue(mult1);
+        let mult2 = document.querySelector("#mult2");
+        clearValue(mult2);
+        let multResult = document.querySelector("#multResult");
+        clearValue(multResult);
+      });
+
+      /* Capitalize Module */
+      let capButton = document.getElementById("capButton");
+      capButton.addEventListener("click", () => {
+        let capInput = document.querySelector("#capInput");
+        capInput.value = capitalize(capInput.value);
+      });
+
+      /* Last Letter Module */
+      let lastLetButton = document.getElementById("lastLetButton");
+      lastLetButton.addEventListener("click", () => {
+        let lastLetInput = document.querySelector("#lastLetInput");
+        lastLetInput.value = lastLetter(lastLetInput.value);
+      });
+    </script>
+  </body>
+</html>
